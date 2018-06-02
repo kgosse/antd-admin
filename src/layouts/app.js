@@ -5,7 +5,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 // import pathToRegexp from 'path-to-regexp'
 // import { connect } from 'dva'
-// import { Loader, MyLayout } from 'components'
+import { Loader } from '../components';
 // import { BackTop, Layout } from 'antd'
 import { classnames, config } from '../utils'
 import { Helmet } from 'react-helmet'
@@ -92,7 +92,7 @@ const App = ({
 
   return (
     <div>
-      {/* <Loader fullScreen spinning={loading.effects['app/query']} /> */}
+      <Loader fullScreen spinning={true} />
       <Helmet>
         <title>ANTD ADMIN</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
