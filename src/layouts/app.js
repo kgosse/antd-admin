@@ -7,8 +7,8 @@ import PropTypes from 'prop-types'
 // import { connect } from 'dva'
 // import { Loader, MyLayout } from 'components'
 // import { BackTop, Layout } from 'antd'
-// import { classnames, config } from 'utils'
-// import { Helmet } from 'react-helmet'
+import { classnames, config } from '../utils'
+import { Helmet } from 'react-helmet'
 // import { withRouter } from 'dva/router'
 // import Error from '../pages/404'
 import '../themes/index.less'
@@ -28,7 +28,7 @@ const App = ({
   // } = app
   // let { pathname } = location
   // pathname = pathname.startsWith('/') ? pathname : `/${pathname}`
-  // const { iconFontJS, iconFontCSS, logo } = config
+  const { iconFontJS, iconFontCSS, logo } = config
   // const current = menu.filter(item => pathToRegexp(item.route || '').exec(pathname))
   // const hasPermission = current.length ? permissions.visit.includes(current[0].id) : false
   const { href } = window.location
@@ -92,7 +92,7 @@ const App = ({
 
   return (
     <div>
-      {/* <Loader fullScreen spinning={loading.effects['app/query']} />
+      {/* <Loader fullScreen spinning={loading.effects['app/query']} /> */}
       <Helmet>
         <title>ANTD ADMIN</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -101,7 +101,7 @@ const App = ({
         {iconFontCSS && <link rel="stylesheet" href={iconFontCSS} />}
       </Helmet>
 
-      <Layout className={classnames({ [styles.dark]: darkTheme, [styles.light]: !darkTheme })}>
+      {/* <Layout className={classnames({ [styles.dark]: darkTheme, [styles.light]: !darkTheme })}>
         {!isNavbar && <Sider
           trigger={null}
           collapsible
