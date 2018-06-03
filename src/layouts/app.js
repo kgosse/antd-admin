@@ -1,21 +1,21 @@
 /* global window */
 /* global document */
 import React from 'react'
-// import NProgress from 'nprogress'
+import NProgress from 'nprogress'
 import PropTypes from 'prop-types'
-// import pathToRegexp from 'path-to-regexp'
+import pathToRegexp from 'path-to-regexp'
 // import { connect } from 'dva'
-import { Loader } from '../components';
-// import { BackTop, Layout } from 'antd'
+import { Loader, MyLayout } from '../components';
+import { BackTop, Layout } from '../components/antd'
 import { classnames, config } from '../utils'
 import { Helmet } from 'react-helmet'
 // import { withRouter } from 'dva/router'
-// import Error from '../pages/404'
+import Error from '../pages/404'
 import '../themes/index.less'
 import './app.less'
 
-// const { Content, Footer, Sider } = Layout
-// const { Header, Bread, styles } = MyLayout
+const { Content, Footer, Sider } = Layout
+const { Header, Bread, styles } = MyLayout
 // const { prefix, openPages } = config
 
 let lastHref
@@ -23,14 +23,15 @@ let lastHref
 const App = ({
   children, dispatch, app, loading, location,
 }) => {
-  // const {
-  //   user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys, menu, permissions,
-  // } = app
+  const {
+    user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys, menu, permissions,
+  } = app
   // let { pathname } = location
   // pathname = pathname.startsWith('/') ? pathname : `/${pathname}`
   const { iconFontJS, iconFontCSS, logo } = config
   // const current = menu.filter(item => pathToRegexp(item.route || '').exec(pathname))
   // const hasPermission = current.length ? permissions.visit.includes(current[0].id) : false
+  const hasPermission = true 
   const { href } = window.location
 
   // if (lastHref !== href) {
@@ -41,47 +42,47 @@ const App = ({
   //   }
   // }
 
-  // const headerProps = {
-  //   menu,
-  //   user,
-  //   location,
-  //   siderFold,
-  //   isNavbar,
-  //   menuPopoverVisible,
-  //   navOpenKeys,
-  //   switchMenuPopover () {
-  //     dispatch({ type: 'app/switchMenuPopver' })
-  //   },
-  //   logout () {
-  //     dispatch({ type: 'app/logout' })
-  //   },
-  //   switchSider () {
-  //     dispatch({ type: 'app/switchSider' })
-  //   },
-  //   changeOpenKeys (openKeys) {
-  //     dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
-  //   },
-  // }
+  const headerProps = {
+    menu,
+    user,
+    location,
+    siderFold,
+    isNavbar,
+    menuPopoverVisible,
+    navOpenKeys,
+    switchMenuPopover () {
+      // dispatch({ type: 'app/switchMenuPopver' })
+    },
+    logout () {
+      // dispatch({ type: 'app/logout' })
+    },
+    switchSider () {
+      // dispatch({ type: 'app/switchSider' })
+    },
+    changeOpenKeys (openKeys) {
+      // dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
+    },
+  }
 
-  // const siderProps = {
-  //   menu,
-  //   location,
-  //   siderFold,
-  //   darkTheme,
-  //   navOpenKeys,
-  //   changeTheme () {
-  //     dispatch({ type: 'app/switchTheme' })
-  //   },
-  //   changeOpenKeys (openKeys) {
-  //     window.localStorage.setItem(`${prefix}navOpenKeys`, JSON.stringify(openKeys))
-  //     dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
-  //   },
-  // }
+  const siderProps = {
+    menu,
+    location,
+    siderFold,
+    darkTheme,
+    navOpenKeys,
+    changeTheme () {
+      // dispatch({ type: 'app/switchTheme' })
+    },
+    changeOpenKeys (openKeys) {
+      // window.localStorage.setItem(`${prefix}navOpenKeys`, JSON.stringify(openKeys))
+      // dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
+    },
+  }
 
-  // const breadProps = {
-  //   menu,
-  //   location,
-  // }
+  const breadProps = {
+    menu,
+    location,
+  }
 
   // if (openPages && openPages.includes(pathname)) {
   //   return (<div>
@@ -92,7 +93,7 @@ const App = ({
 
   return (
     <div>
-      <Loader fullScreen spinning={true} />
+      <Loader fullScreen spinning={false} />
       <Helmet>
         <title>ANTD ADMIN</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -101,7 +102,7 @@ const App = ({
         {iconFontCSS && <link rel="stylesheet" href={iconFontCSS} />}
       </Helmet>
 
-      {/* <Layout className={classnames({ [styles.dark]: darkTheme, [styles.light]: !darkTheme })}>
+      <Layout className={classnames({ [styles.dark]: false, [styles.light]: true })}>
         {!isNavbar && <Sider
           trigger={null}
           collapsible
@@ -120,7 +121,7 @@ const App = ({
             {config.footerText}
           </Footer>
         </Layout>
-      </Layout> */}
+      </Layout>
     </div>
   )
 }

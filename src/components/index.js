@@ -1,5 +1,9 @@
-export Loader from './Loader'
+import * as MyLayout from './Layout/index.js'
+import Loader from './Loader';
+import Page from './Page';
 
-// export {
-//   Loader,
-// }
+export {
+  MyLayout,
+  Loader,
+  Page,
+}
