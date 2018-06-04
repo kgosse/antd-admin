@@ -7,6 +7,7 @@ import { queryArray } from '../../utils'
 import styles from './Layout.module.less'
 
 const Bread = ({ menu, location }) => {
+  location = {pathname: '/'};
   // 匹配当前路由
   let pathArray = []
   let current

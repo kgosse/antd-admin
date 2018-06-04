@@ -11,9 +11,11 @@ let openKeysFlag = false
 const Menus = ({
   siderFold, darkTheme, navOpenKeys, changeOpenKeys, menu, location,
 }) => {
+  location = {pathname: '/'};
   // 生成树状
   const menuTree = arrayToTree(menu.filter(_ => _.mpid !== '-1'), 'id', 'mpid')
   const levelMap = {}
+
 
   // 递归生成菜单
   const getMenus = (menuTreeN, siderFoldN) => {
