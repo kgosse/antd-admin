@@ -14,7 +14,7 @@ import registerServiceWorker from './registerServiceWorker';
 ReactDOM.render(
   <Router>
     <Switch>
-        <Route exact name="index" path="/" render={(props) => <Root rootStore={rootStore} {...props}/>}  />
+        <Route name="index" path="/" render={(props) => <Root rootStore={rootStore} {...props}/>}  />
       {/* <Root app={data}><App rootStore={rootStore} /></Root> */}
     </Switch>
   </Router>, 

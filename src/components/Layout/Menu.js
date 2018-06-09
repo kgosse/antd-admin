@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu, Icon } from '../../components/antd';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { arrayToTree, queryArray } from '../../utils';
 import pathToRegexp from 'path-to-regexp';
 
@@ -37,11 +37,10 @@ const Menus = ({
       }
       return (
         <Menu.Item key={item.id}>
-          {/* <Link to={item.route || '#'} style={siderFoldN ? { width: 10 } : {}}>
+          <Link to={item.route || '/'} style={siderFoldN ? { width: 10 } : {}}>
             {item.icon && <Icon type={item.icon} />}
             {item.name}
-          </Link> */}
-            {item.name}
+          </Link>
         </Menu.Item>
       )
     })

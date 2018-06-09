@@ -2,7 +2,8 @@
 /* global document */
 import React from 'react'
 import NProgress from 'nprogress'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types' 
+import { Switch, Route } from 'react-router-dom';
 import pathToRegexp from 'path-to-regexp'
 // import { connect } from 'dva'
 import { Loader, MyLayout } from '../components';
@@ -12,6 +13,8 @@ import { Helmet } from 'react-helmet'
 import { observer } from 'mobx-react'
 // import { withRouter } from 'dva/router'
 import Error from '../pages/404'
+import Dashboard from '../pages/dashboard';
+import Users from '../pages/user';
 import '../themes/index.less'
 import './app.less'
 
@@ -124,6 +127,11 @@ export default class App extends React.Component {
               <Bread {...breadProps} />
               {/* {hasPermission ? children : <Error />} */}
                {/* <Error /> */}
+               <Switch>
+                  {/* <Route exact name="dashboard" path="/dashboard" render={Dashboard} /> */}
+                  <Route exact name="users" path="/user" render={Users} />
+                  <Route component={Dashboard}/>
+               </Switch>
                <div></div>
             </Content>
             <Footer >
