@@ -23,10 +23,10 @@ const Sider = ({
         {siderFold ? '' : <span>{config.name}</span>}
       </div>
       <Menus {...menusProps} />
-      {!siderFold ? <div className={styles.switchtheme}>
+      {/* {!siderFold ? <div className={styles.switchtheme}>
         <span><Icon type="bulb" />Switch Theme</span>
         <Switch onChange={changeTheme} defaultChecked={darkTheme} checkedChildren="Dark" unCheckedChildren="Light" />
-      </div> : ''}
+      </div> : ''} */}
     </div>
   )
 }

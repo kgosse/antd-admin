@@ -1,5 +1,5 @@
 import { Store } from 'libx';
-import { observable, computed  } from 'mobx';
+import { observable, computed, action  } from 'mobx';
 import {config} from '../../utils';
 
 const { prefix } = config;
@@ -73,4 +73,8 @@ export default class AppScreenStore extends Store {
       return this._navOpenKeys.slice();
     }
   
+    @action
+    siderFoldAction = () => {
+      this.siderFold = !this.siderFold;
+    };
 }
