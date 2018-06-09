@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu, Icon } from '../../components/antd';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { arrayToTree, queryArray } from '../../utils';
 import pathToRegexp from 'path-to-regexp';
 
@@ -11,7 +11,6 @@ let openKeysFlag = false
 const Menus = ({
   siderFold, darkTheme, navOpenKeys, changeOpenKeys, menu, location,
 }) => {
-  location = {pathname: '/'};
   // 生成树状
   const menuTree = arrayToTree(menu.filter(_ => _.mpid !== '-1'), 'id', 'mpid')
   const levelMap = {}
@@ -68,7 +67,10 @@ const Menus = ({
   }
 
   const onOpenChange = (openKeys) => {
-    if (navOpenKeys.length) changeOpenKeys([]), openKeysFlag = true
+    if (navOpenKeys.length) {
+      changeOpenKeys([]); 
+      openKeysFlag = true;
+    }
     const latestOpenKey = openKeys.find(key => !navOpenKeys.includes(key))
     const latestCloseKey = navOpenKeys.find(key => !openKeys.includes(key))
     let nextOpenKeys = []
