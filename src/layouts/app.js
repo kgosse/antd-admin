@@ -35,7 +35,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    const {location} = this.props;
+    const {location, history} = this.props;
     const {
       user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys, menu, siderFoldAction, navOpenKeysAction,
     } = this.store;
@@ -67,6 +67,7 @@ export default class App extends React.Component {
         // dispatch({ type: 'app/switchMenuPopver' })
       },
       logout () {
+        history.push('/login');
         // dispatch({ type: 'app/logout' })
       },
       switchSider () {
