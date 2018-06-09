@@ -15,6 +15,9 @@ import { observer } from 'mobx-react'
 import Error from '../pages/404'
 import Dashboard from '../pages/dashboard';
 import Users from '../pages/user';
+import ECharts from '../pages/chart/ECharts';
+import HighCharts from '../pages/chart/highCharts';
+import ReCharts from '../pages/chart/ReCharts';
 import '../themes/index.less'
 import './app.less'
 
@@ -131,6 +134,9 @@ export default class App extends React.Component {
                <Switch>
                   {/* <Route exact name="dashboard" path="/dashboard" render={Dashboard} /> */}
                   <Route exact name="users" path="/user" render={Users} />
+                  <Route exact name="users" path="/chart/ECharts" render={ECharts} />
+                  <Route exact name="users" path="/chart/highCharts" render={HighCharts} />
+                  <Route exact name="users" path="/chart/Recharts" render={ReCharts} />
                   <Route component={Dashboard}/>
                </Switch>
                <div></div>

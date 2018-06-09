@@ -1,13 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Breadcrumb, Icon } from '../../components/antd'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import pathToRegexp from 'path-to-regexp'
 import { queryArray } from '../../utils'
 import styles from './Layout.module.less'
 
 const Bread = ({ menu, location }) => {
-  location = {pathname: '/'};
   let pathArray = []
   let current
   for (let index in menu) {
@@ -59,12 +58,11 @@ const Bread = ({ menu, location }) => {
     )
     return (
       <Breadcrumb.Item key={key}>
-        {/* {((pathArray.length - 1) !== key)
+        {((pathArray.length - 1) !== key)
           ? <Link to={pathToRegexp.compile(item.route || '')(paramMap) || '#'}>
             {content}
           </Link>
-          : content} */}
-           {content}
+          : content}
       </Breadcrumb.Item>
     )
   })

@@ -11,10 +11,10 @@ export default class AppScreenStore extends Store {
     };
     @observable _menu = [
       {
-        id: 1,
+        id: '1',
         icon: 'laptop',
         name: 'Dashboard',
-        router: '/dashboard',
+        route: '/dashboard',
       },
       {
         id: '2',
