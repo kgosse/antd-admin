@@ -58,7 +58,7 @@ export default class AppScreenStore extends Store {
     @observable siderFold = window.localStorage.getItem(`${prefix}siderFold`) === 'true';
     @observable darkTheme= window.localStorage.getItem(`${prefix}darkTheme`) === 'true';
     @observable isNavbar = document.body.clientWidth < 769;
-    @observable _navOpenKeys = JSON.parse(window.localStorage.getItem(`${prefix}navOpenKeys`)) || [];
+    @observable _navOpenKeys = [];
     @observable locationPathname = '';
     @observable locationQuery = {};
 
@@ -77,4 +77,9 @@ export default class AppScreenStore extends Store {
     siderFoldAction = () => {
       this.siderFold = !this.siderFold;
     };
+
+    @action
+    navOpenKeysAction = (data) => {
+      this._navOpenKeys = data;
+    }
 }

@@ -34,7 +34,7 @@ export default class App extends React.Component {
   render() {
     const {location} = this.props;
     const {
-      user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys, menu, siderFoldAction,
+      user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys, menu, siderFoldAction, navOpenKeysAction,
     } = this.store;
     // let { pathname } = location
     // pathname = pathname.startsWith('/') ? pathname : `/${pathname}`
@@ -84,6 +84,7 @@ export default class App extends React.Component {
         // dispatch({ type: 'app/switchTheme' })
       },
       changeOpenKeys (openKeys) {
+        navOpenKeysAction(openKeys);
         // window.localStorage.setItem(`${prefix}navOpenKeys`, JSON.stringify(openKeys))
         // dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
       },
