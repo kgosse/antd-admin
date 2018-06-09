@@ -6,3 +6,6 @@ export Icon from 'antd/lib/icon';
 export Popover from 'antd/lib/popover';
 export Breadcrumb from 'antd/lib/breadcrumb';
 export Switch from 'antd/lib/switch';
+export Row from 'antd/lib/row';
+export Form from 'antd/lib/form';
+export Input from 'antd/lib/input';

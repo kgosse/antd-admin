@@ -133,10 +133,10 @@ export default class App extends React.Component {
                {/* <Error /> */}
                <Switch>
                   {/* <Route exact name="dashboard" path="/dashboard" render={Dashboard} /> */}
-                  <Route exact name="users" path="/user" render={Users} />
-                  <Route exact name="users" path="/chart/ECharts" render={ECharts} />
-                  <Route exact name="users" path="/chart/highCharts" render={HighCharts} />
-                  <Route exact name="users" path="/chart/Recharts" render={ReCharts} />
+                  <Route exact name="users" path="/user" component={Users} />
+                  <Route exact name="users" path="/chart/ECharts" component={ECharts} />
+                  <Route exact name="users" path="/chart/highCharts" component={HighCharts} />
+                  <Route exact name="users" path="/chart/Recharts" component={ReCharts} />
                   <Route component={Dashboard}/>
                </Switch>
                <div></div>
