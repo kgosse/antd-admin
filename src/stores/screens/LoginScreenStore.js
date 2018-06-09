@@ -4,6 +4,7 @@ import { observable, action, computed } from 'mobx'
 // Most of this is plain MobX.
 export default class LoginScreenStore extends Store {
   @observable loading = false
+  @observable ready = false
 
   @action
   loadingAction = (loading) => {
@@ -15,5 +16,11 @@ export default class LoginScreenStore extends Store {
   @action
   activateAction = () => {
     this.loadingAction(false);
+    this.readyAction(false);
+  }
+
+  @action
+  readyAction = (value) => {
+    this.ready = value;
   }
 }
