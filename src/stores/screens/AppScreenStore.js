@@ -6,6 +6,7 @@ const { prefix } = config;
 
 export default class AppScreenStore extends Store {
     @observable user = {};
+    @observable ready = false;
     @observable permissions = {
       visit: [],
     };
@@ -82,4 +83,9 @@ export default class AppScreenStore extends Store {
     navOpenKeysAction = (data) => {
       this._navOpenKeys = data;
     }
+
+    @action
+    readyAction = (value) => {
+      this.ready = value;
+    } 
 }

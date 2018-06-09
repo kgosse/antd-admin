@@ -44,7 +44,6 @@ const Menus = ({
   }
   const menuItems = getMenus(menuTree, siderFold)
 
-  // 保持选中
   const getAncestorKeys = (key) => {
     let map = {}
     const getParent = (index) => {
@@ -84,8 +83,6 @@ const Menus = ({
     openKeys: navOpenKeys,
   } : {}
 
-
-  // 寻找选中路由
   let currentMenu
   let defaultSelectedKeys
   for (let item of menu) {

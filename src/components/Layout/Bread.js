@@ -49,7 +49,6 @@ const Bread = ({ menu, location }) => {
     }
   }
 
-  // 递归查找父级
   const breads = pathArray.map((item, key) => {
     const content = (
       <span>{item.icon

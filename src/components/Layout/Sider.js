@@ -1,12 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Icon, Switch } from '../../components/antd'
 import { config } from '../../utils'
 import styles from './Layout.module.less'
 import Menus from './Menu'
 
 const Sider = ({
-  siderFold, darkTheme, location, changeTheme, navOpenKeys, changeOpenKeys, menu,
+  siderFold, darkTheme, location, navOpenKeys, changeOpenKeys, menu,
 }) => {
   const menusProps = {
     menu,
@@ -23,10 +22,6 @@ const Sider = ({
         {siderFold ? '' : <span>{config.name}</span>}
       </div>
       <Menus {...menusProps} />
-      {/* {!siderFold ? <div className={styles.switchtheme}>
-        <span><Icon type="bulb" />Switch Theme</span>
-        <Switch onChange={changeTheme} defaultChecked={darkTheme} checkedChildren="Dark" unCheckedChildren="Light" />
-      </div> : ''} */}
     </div>
   )
 }

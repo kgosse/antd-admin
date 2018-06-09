@@ -1,17 +1,14 @@
 /* global window */
 /* global document */
 import React from 'react'
-import NProgress from 'nprogress'
-import PropTypes from 'prop-types' 
+import PropTypes from 'prop-types'
 import { Switch, Route } from 'react-router-dom';
 import pathToRegexp from 'path-to-regexp'
-// import { connect } from 'dva'
 import { Loader, MyLayout } from '../components';
 import { BackTop, Layout } from '../components/antd'
 import { classnames, config } from '../utils'
 import { Helmet } from 'react-helmet'
 import { observer } from 'mobx-react'
-// import { withRouter } from 'dva/router'
 import Error from '../pages/404'
 import Dashboard from '../pages/dashboard';
 import Users from '../pages/user';
@@ -23,9 +20,6 @@ import './app.less'
 
 const { Content, Footer, Sider } = Layout
 const { Header, Bread, styles } = MyLayout
-// const { prefix, openPages } = config
-
-// let lastHref
 
 @observer
 export default class App extends React.Component {
@@ -34,27 +28,21 @@ export default class App extends React.Component {
     return this.props.rootStore.appScreenStore
   }
 
+  componentDidMount() {
+    setTimeout(() => this.store.readyAction(true), 1000);
+  }
+
   render() {
-    const {location, history} = this.props;
+    const { location, history } = this.props;
     const {
-      user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys, menu, siderFoldAction, navOpenKeysAction,
+      user, siderFold, darkTheme,
+      isNavbar, menuPopoverVisible, navOpenKeys,
+      menu, siderFoldAction, navOpenKeysAction,
+      ready
     } = this.store;
-    // let { pathname } = location
-    // pathname = pathname.startsWith('/') ? pathname : `/${pathname}`
+
     const { iconFontJS, iconFontCSS, logo } = config
-    // const current = menu.filter(item => pathToRegexp(item.route || '').exec(pathname))
-    // const hasPermission = current.length ? permissions.visit.includes(current[0].id) : false
-    // const hasPermission = true 
-    // const { href } = window.location
-  
-    // if (lastHref !== href) {
-    //   NProgress.start()
-    //   if (!loading.global) {
-    //     NProgress.done()
-    //     lastHref = href
-    //   }
-    // }
-  
+
     const headerProps = {
       menu,
       user,
@@ -63,49 +51,67 @@ export default class App extends React.Component {
       isNavbar,
       menuPopoverVisible,
       navOpenKeys,
-      switchMenuPopover () {
-        // dispatch({ type: 'app/switchMenuPopver' })
+      switchMenuPopover() {
       },
-      logout () {
+      logout() {
         history.push('/login');
-        // dispatch({ type: 'app/logout' })
       },
-      switchSider () {
+      switchSider() {
         siderFoldAction();
       },
-      changeOpenKeys (openKeys) {
-        // dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
+      changeOpenKeys(openKeys) {
       },
     }
-  
+
     const siderProps = {
       menu,
       location,
       siderFold,
       darkTheme,
       navOpenKeys,
-      changeTheme () {
-        // dispatch({ type: 'app/switchTheme' })
+      changeTheme() {
       },
-      changeOpenKeys (openKeys) {
+      changeOpenKeys(openKeys) {
         navOpenKeysAction(openKeys);
-        // window.localStorage.setItem(`${prefix}navOpenKeys`, JSON.stringify(openKeys))
-        // dispatch({ type: 'app/handleNavOpenKeys', payload: { navOpenKeys: openKeys } })
       },
     }
-  
+
     const breadProps = {
       menu,
       location,
     }
-  
-    // if (openPages && openPages.includes(pathname)) {
-    //   return (<div>
-    //     <Loader fullScreen spinning={loading.effects['app/query']} />
-    //     {children}
-    //   </div>)
-    // }
-  
+
+    const renderLayout = !ready ? null : (
+      <Layout className={classnames({ [styles.dark]: false, [styles.light]: true })}>
+        {!isNavbar && <Sider
+          trigger={null}
+          collapsible
+          collapsed={siderFold}
+        >
+          {siderProps.menu.length === 0 ? null : <MyLayout.Sider {...siderProps} />}
+        </Sider>}
+        <Layout style={{ height: '100vh', overflow: 'scroll' }} id="mainContainer">
+          <BackTop target={() => document.getElementById('mainContainer')} />
+          <Header {...headerProps} />
+          <Content>
+            <Bread {...breadProps} />
+            <Switch>
+              <Route exact name="users" path="/user" component={Users} />
+              <Route exact name="echart" path="/chart/ECharts" component={ECharts} />
+              <Route exact name="highcharts" path="/chart/highCharts" component={HighCharts} />
+              <Route exact name="recharts" path="/chart/Recharts" component={ReCharts} />
+              <Route exact path="/dashboard" component={Dashboard} />
+              <Route component={Error} />
+            </Switch>
+            <div></div>
+          </Content>
+          <Footer >
+            {config.footerText}
+          </Footer>
+        </Layout>
+      </Layout>
+    );
+
     return (
       <div>
         <Helmet>
@@ -115,56 +121,18 @@ export default class App extends React.Component {
           {iconFontJS && <script src={iconFontJS} />}
           {iconFontCSS && <link rel="stylesheet" href={iconFontCSS} />}
         </Helmet>
-        <Loader fullScreen spinning={false} />
-        <Layout className={classnames({ [styles.dark]: false, [styles.light]: true })}>
-          {!isNavbar && <Sider
-            trigger={null}
-            collapsible
-            collapsed={siderFold}
-          >
-            {siderProps.menu.length === 0 ? null : <MyLayout.Sider {...siderProps} />}
-          </Sider>}
-          <Layout style={{ height: '100vh', overflow: 'scroll' }} id="mainContainer">
-            <BackTop target={() => document.getElementById('mainContainer')} />
-            <Header {...headerProps} />
-            <Content>
-              <Bread {...breadProps} />
-              {/* {hasPermission ? children : <Error />} */}
-               {/* <Error /> */}
-               <Switch>
-                  {/* <Route exact name="dashboard" path="/dashboard" render={Dashboard} /> */}
-                  <Route exact name="users" path="/user" component={Users} />
-                  <Route exact name="users" path="/chart/ECharts" component={ECharts} />
-                  <Route exact name="users" path="/chart/highCharts" component={HighCharts} />
-                  <Route exact name="users" path="/chart/Recharts" component={ReCharts} />
-                  <Route component={Dashboard}/>
-               </Switch>
-               <div></div>
-            </Content>
-            <Footer >
-              {config.footerText}
-            </Footer>
-          </Layout>
-        </Layout>
+        <Loader fullScreen spinning={!ready} />
+        {renderLayout}
       </div>
     )
-  
+
   }
 
 }
 
-// const App = ({
-//   children, dispatch, app, loading, location,
-// }) => {
-// }
-
 App.propTypes = {
-  // children: PropTypes.element.isRequired,
   location: PropTypes.object,
   dispatch: PropTypes.func,
   app: PropTypes.object,
   loading: PropTypes.object,
 }
-
-// export default withRouter(connect(({ app, loading }) => ({ app, loading }))(App))
-// export default App
