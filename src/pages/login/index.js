@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react'
-// import { connect } from 'dva'
 import { Button, Row, Form, Input } from '../../components/antd';
 import { Loader } from '../../components';
 import { config } from '../../utils';
@@ -26,15 +25,17 @@ class Login extends React.Component {
         getFieldDecorator,
         validateFieldsAndScroll,
       },
+      history
     } = this.props;
 
-    const { loading, ready } = this.store;
+    const { loading, ready, loginAction } = this.store;
 
     function handleOk() {
       validateFieldsAndScroll((errors, values) => {
         if (errors) {
           return
         }
+        loginAction(values, history);
         // dispatch({ type: 'login/login', payload: values })
       })
     }
@@ -73,7 +74,6 @@ class Login extends React.Component {
                 <span>Password：guest</span>
               </p>
             </Row>
-
           </form>
         </div>
     );

@@ -9,3 +9,4 @@ export Switch from 'antd/lib/switch';
 export Row from 'antd/lib/row';
 export Form from 'antd/lib/form';
 export Input from 'antd/lib/input';
+export message from 'antd/lib/message';

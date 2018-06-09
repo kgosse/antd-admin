@@ -107,7 +107,6 @@ export default class App extends React.Component {
   
     return (
       <div>
-        <Loader fullScreen spinning={false} />
         <Helmet>
           <title>BRAND NAME</title>
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -115,7 +114,7 @@ export default class App extends React.Component {
           {iconFontJS && <script src={iconFontJS} />}
           {iconFontCSS && <link rel="stylesheet" href={iconFontCSS} />}
         </Helmet>
-  
+        <Loader fullScreen spinning={false} />
         <Layout className={classnames({ [styles.dark]: false, [styles.light]: true })}>
           {!isNavbar && <Sider
             trigger={null}

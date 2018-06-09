@@ -1,5 +1,6 @@
-import { Store } from 'libx'
-import { observable, action, computed } from 'mobx'
+import { Store } from 'libx';
+import { observable, action, computed } from 'mobx';
+import {message} from '../../components/antd';
 
 // Most of this is plain MobX.
 export default class LoginScreenStore extends Store {
@@ -22,5 +23,14 @@ export default class LoginScreenStore extends Store {
   @action
   readyAction = (value) => {
     this.ready = value;
+  }
+
+  @action
+  loginAction = ({username, password}, history) => {
+    if (username != "guest" || password != "guest") {
+      message.error("bad credentials");
+    } else {
+      history.push('/dashboard');
+    }
   }
 }
